@@ -8,16 +8,16 @@
 
 ### 执行 `npm link`
 
-此时就可以使用 `eos` 命令了。
+此时就可以使用 `wow` 命令了。
 
-- `eos config get`
-- `eos config set type directRegistry`
-- `eos config set registry https://github.com/xxx/xxx.git`
-- `eos init m myVue`
+- `wow config get`
+- `wow config set type directRegistry`
+- `wow config set registry https://github.com/xxx/xxx.git`
+- `wow init m myVue`
 
-- `eos config set type users`
-- `eos config set registry YvetteLau`
-- `eos init vue-template myVue`
+- `wow config set type users`
+- `wow config set registry YvetteLau`
+- `wow init vue-template myVue`
 
 ### 发布
 

@@ -4,9 +4,10 @@ import apply from './index';
 import chalk from 'chalk';
 
 /**
- * eos commands
+ * wow commands
  *    - config
  *    - init 
+ *    - template
  */
 
 let actionMap = {
@@ -14,16 +15,24 @@ let actionMap = {
         alias: 'i',
         description: 'generate a new project from a template',
         usages: [
-            'eos init templateName projectName'
+            'wow init templateName projectName'
         ]
     },
     config: {
         alias: 'cfg',
-        description: 'config .eosrc',
+        description: 'config .wowrc',
         usages: [
-            'eos config set <k> <v>',
-            'eos config get <k>',
-            'eos config remove <k>'
+            'wow config set <k> <v>',
+            'wow config get <k>',
+            'wow config remove <k>'
+        ]
+        
+    },
+    template: {
+        alias: 'tpl',
+        description: 'generate a new project from a direct template url',
+        usages: [
+            'wow template https://github.com/xxx/xxx.git',
         ]
         
     },
@@ -65,7 +74,7 @@ program.on('-h', help);
 program.on('--help', help);
 program.version(VERSION, '-V --version').parse(process.argv);
 
-// eos 不带参数时
+// wow 不带参数时
 if (!process.argv.slice(2).length) {
     program.outputHelp(make_green);
 }

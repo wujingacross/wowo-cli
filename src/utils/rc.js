@@ -34,21 +34,21 @@ export const getAll = async () => {
 
 export const set = async (key, value) => {
     const exit = await exits(RC);
-    if(!key) {
-        console.log(chalk.red(chalk.bold('Error:')), chalk.red('key is required'));
-        return;
-    }
-    if(!value) {
-        console.log(chalk.red(chalk.bold('Error:')), chalk.red('value is required'));
-        return;
-    }
     let opts;
     if (exit) {
+        if(!key) {
+            console.log(chalk.red(chalk.bold('Error:')), chalk.red('config key is required'));
+            return;
+        }
+        if(!value) {
+            console.log(chalk.red(chalk.bold('Error:')), chalk.red('config value is required'));
+            return;
+        }
         opts = await readFile(RC, 'utf8');
         opts = decode(opts);
         Object.assign(opts, { [key]: value });
     } else {
-        opts = Object.assign(DEFAULTS, { [key]: value });
+        opts = DEFAULTS;
     }
     await writeFile(RC, encode(opts), 'utf8');
 }

@@ -5,7 +5,7 @@ export const downloadLocal = async (templateName, projectName) => {
   let config = await getAll();
   let api =
     config.type === 'directRegistry'
-      ? `direct:${config.registry}`
+      ? `direct:${templateName || config.registry}`
       : `${config.registry}/${templateName}`;
   return new Promise((resolve, reject) => {
     downloadGit(
@@ -19,5 +19,18 @@ export const downloadLocal = async (templateName, projectName) => {
         resolve();
       }
     );
+  });
+};
+
+export const downloadByTemplateUrl = async (templateUrl, projectName) => {
+  let config = await getAll();
+  let api = `direct:${templateUrl}`;
+  return new Promise((resolve, reject) => {
+    downloadGit(api, projectName, { clone: true }, (err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve();
+    });
   });
 };

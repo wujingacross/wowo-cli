@@ -1,6 +1,6 @@
-// 管理 .eosrc 文件 (当前用户目录下)
+// 管理 .wowrc 文件 (当前用户目录下)
 
-import { get, set, getAll, remove } from './utils/rc';
+import { get, set, getAll, remove } from '../utils/rc';
 
 let config = async (action, key, value) => {
     switch (action) {

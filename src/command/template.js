@@ -1,11 +1,7 @@
-import { downloadLocal } from './utils/get';
-import ora from 'ora';
-import inquirer from 'inquirer';
 import fs from 'fs';
-import chalk from 'chalk';
-import symbol from 'log-symbols';
+import { downloadByTemplateUrl } from '../utils/get';
 
-let init = async (templateName, projectName) => {
+let template = async (templateUrl, projectName) => {
     //项目不存在
     if (!fs.existsSync(projectName)) {
         //命令行交互
@@ -44,6 +40,10 @@ let init = async (templateName, projectName) => {
         //项目已经存在
         console.log(symbol.error, chalk.red('The project already exists'));
     }
-}
 
-module.exports = init;
+
+  
+  downloadByTemplateUrl(templateUrl, projectName);
+};
+
+module.exports = template;

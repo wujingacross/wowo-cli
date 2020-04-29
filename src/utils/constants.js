@@ -7,7 +7,7 @@ export const VERSION = version;
 const HOME = process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'];
 
 // 配置文件目录
-export const RC = `${HOME}/.eosrc`;
+export const RC = `${HOME}/.wowrc`;
 
 // RC 配置下载模板的地方，给 github 的 api 使用
 // https://api.github.com/users/YvetteLau/repos
