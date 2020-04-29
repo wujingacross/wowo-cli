@@ -1,19 +1,30 @@
 {
-  "name": "eos-cli",
-  "version": "1.0.2",
-  "description": "脚手架",
-  "main": "index.js",
+  "name": "wowo-cli",
+  "version": "0.1.0",
+  "description": "wow命令行工具，帮助开发人员快速创建react项目工程",
+  "author": "",
+  "license": "Apache 2.0",
   "bin": {
-    "eos": "./bin/www"
+    "wow": "./bin/wwws"
   },
   "scripts": {
     "compile": "babel src -d dist",
     "watch": "npm run compile -- --watch",
     "postinstall": "eos config set"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wujingacross/wowo-cli.git"
+  },
+  "keywords": [
+    "cli",
+    "react",
+    "template"
+  ],
+  "bugs": {
+    "url": "https://github.com/wujingacross/wowo-cli/issues"
+  },
+  "homepage": "https://github.com/wujingacross/wowo-cli",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-env": "^2.4.1",
