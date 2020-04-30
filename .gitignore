@@ -4,7 +4,6 @@ logs
 .DS_Store
 **/**/.DS_Store
 npm-debug.log*
-dist
 build
 # Runtime data
 pids
@@ -34,7 +33,6 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-/dist/
 /build/
 .idea/
 .vscode/
