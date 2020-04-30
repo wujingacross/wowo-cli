@@ -1,4 +1,8 @@
+import ora from 'ora';
+import inquirer from 'inquirer';
 import fs from 'fs';
+import chalk from 'chalk';
+import symbol from 'log-symbols';
 import { downloadByTemplateUrl } from '../utils/get';
 
 let template = async (templateUrl, projectName) => {
@@ -19,7 +23,7 @@ let template = async (templateUrl, projectName) => {
             //通过配置文件，获取模板信息
             let loading = ora('downloading template ...');
             loading.start();
-            downloadLocal(templateName, projectName).then(() => {
+            downloadByTemplateUrl(templateUrl, projectName).then(() => {
                 loading.succeed();
                 const fileName = `${projectName}/package.json`;
                 if(fs.existsSync(fileName)){
@@ -40,10 +44,6 @@ let template = async (templateUrl, projectName) => {
         //项目已经存在
         console.log(symbol.error, chalk.red('The project already exists'));
     }
-
-
-  
-  downloadByTemplateUrl(templateUrl, projectName);
 };
 
 module.exports = template;

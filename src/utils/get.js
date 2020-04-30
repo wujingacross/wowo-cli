@@ -23,7 +23,6 @@ export const downloadLocal = async (templateName, projectName) => {
 };
 
 export const downloadByTemplateUrl = async (templateUrl, projectName) => {
-  let config = await getAll();
   let api = `direct:${templateUrl}`;
   return new Promise((resolve, reject) => {
     downloadGit(api, projectName, { clone: true }, (err) => {
