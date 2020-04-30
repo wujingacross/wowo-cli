@@ -14,6 +14,6 @@ export const RC = `${HOME}/.wowrc`;
 // https://api.github.com/${type}/${registry}/repos
 // 模板下载地址可配置
 export const DEFAULTS = {
-    registry: 'YvetteLau',
+    registry: 'wujingacross',
     type: 'users'
 }

@@ -41,6 +41,14 @@ function help() {
     });
   });
   console.log('\r');
+  console.log('Example call:');
+  console.log('  $ wow config get');
+  console.log('  $ wow config set type users');
+  console.log('  $ wow config set registry wujingacross');
+  console.log('  $ wow init mobile-tpl-rc mobile-fe');
+  console.log('  $ wow config set type directRegistry');
+  console.log('  $ wow init https://github.com/wujingacross/mobile-tpl-rc.git mobile-fe');
+  console.log('  $ wow template https://github.com/wujingacross/mobile-tpl-rc.git mobile-fe');
 }
 
 Object.keys(actionMap).forEach((action) => {
