@@ -17,6 +17,11 @@ let init = async (templateName, projectName) => {
             {
                 name: 'author',
                 message: 'Please enter the author name: '
+            },
+            {
+                name: 'homepage',
+                message: 'Please enter the homepage: ',
+                default: '.'
             }
         ]).then(async (answer) => {
             //下载模板 选择模板

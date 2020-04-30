@@ -47,6 +47,10 @@ var init = function () {
                             }, {
                                 name: 'author',
                                 message: 'Please enter the author name: '
+                            }, {
+                                name: 'homepage',
+                                message: 'Please enter the homepage: ',
+                                default: '.'
                             }]).then(function () {
                                 var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(answer) {
                                     var loading;
