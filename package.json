@@ -1,11 +1,11 @@
 {
   "name": "wowo-cli",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "wow命令行工具，帮助开发人员快速创建react项目工程",
-  "author": "",
-  "license": "Apache 2.0",
+  "author": "wujing",
+  "license": "MIT",
   "bin": {
-    "wow": "./bin/wwws"
+    "wow": "./bin/www"
   },
   "scripts": {
     "compile": "babel src -d dist",

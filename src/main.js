@@ -14,7 +14,7 @@ let actionMap = {
   init: {
     alias: 'i',
     description: 'generate a new project from a template',
-    usages: ['wow init templateName projectName'],
+    usages: ['wow init <template-name> <project-directory>'],
   },
   config: {
     alias: 'cfg',
@@ -28,33 +28,10 @@ let actionMap = {
   template: {
     alias: 'tpl',
     description: 'generate a new project from a direct template url',
-    usages: ['wow template https://github.com/xxx/xxx.git <project-directory>'],
+    usages: ['wow template <template-registry-url> <project-directory>'],
   },
   //other commands
 };
-
-Object.keys(actionMap).forEach((action) => {
-  program
-    .command(action)
-    .description(actionMap[action].description)
-    .alias(actionMap[action].alias) //别名
-    .action(() => {
-      switch (action) {
-        case 'config':
-          //配置
-          apply(action, ...process.argv.slice(3));
-          break;
-        case 'init':
-          apply(action, ...process.argv.slice(3));
-          break;
-        case 'template':
-          apply(action, ...process.argv.slice(3));
-          break;
-        default:
-          break;
-      }
-    });
-});
 
 function help() {
   console.log('\r\nUsage:');
@@ -66,15 +43,47 @@ function help() {
   console.log('\r');
 }
 
-program.usage('<command> [options]');
+Object.keys(actionMap).forEach((action) => {
+  program
+    .command(action)
+    .description(actionMap[action].description)
+    .alias(actionMap[action].alias) //别名
+    .action(() => {
+      if (handleArgv()) {
+        switch (action) {
+          case 'config':
+            //配置
+            apply(action, ...process.argv.slice(3));
+            break;
+          case 'init':
+            apply(action, ...process.argv.slice(3));
+            break;
+          case 'template':
+            apply(action, ...process.argv.slice(3));
+            break;
+          default:
+            break;
+        }
+      }
+    });
+});
+
+program.name('wow').usage('<command> [options]');
 program.on('-h', help);
 program.on('--help', help);
-program.version(VERSION, '-V --version').parse(process.argv);
+program.version(VERSION, '-v --version').parse(process.argv);
 
-// wow 不带参数时
-if (!process.argv.slice(2).length) {
-  program.outputHelp(make_green);
+/**
+ *  判断执行命令是的参数，最少3个参数，命令名和每个命令至少两个参数
+ * */
+function handleArgv() {
+  if (process.argv.slice(2).length <= 2) {
+    program.outputHelp(make_green);
+    return false;
+  }
+  return true;
 }
+
 function make_green(txt) {
   return chalk.green(txt);
 }

@@ -31,7 +31,7 @@ var actionMap = {
   init: {
     alias: 'i',
     description: 'generate a new project from a template',
-    usages: ['wow init templateName projectName']
+    usages: ['wow init <template-name> <project-directory>']
   },
   config: {
     alias: 'cfg',
@@ -41,30 +41,10 @@ var actionMap = {
   template: {
     alias: 'tpl',
     description: 'generate a new project from a direct template url',
-    usages: ['wow template https://github.com/xxx/xxx.git <project-directory>']
+    usages: ['wow template <template-registry-url> <project-directory>']
   }
   //other commands
 };
-
-Object.keys(actionMap).forEach(function (action) {
-  _commander2.default.command(action).description(actionMap[action].description).alias(actionMap[action].alias) //别名
-  .action(function () {
-    switch (action) {
-      case 'config':
-        //配置
-        _index2.default.apply(undefined, [action].concat((0, _toConsumableArray3.default)(process.argv.slice(3))));
-        break;
-      case 'init':
-        _index2.default.apply(undefined, [action].concat((0, _toConsumableArray3.default)(process.argv.slice(3))));
-        break;
-      case 'template':
-        _index2.default.apply(undefined, [action].concat((0, _toConsumableArray3.default)(process.argv.slice(3))));
-        break;
-      default:
-        break;
-    }
-  });
-});
 
 function help() {
   console.log('\r\nUsage:');
@@ -76,15 +56,44 @@ function help() {
   console.log('\r');
 }
 
-_commander2.default.usage('<command> [options]');
+Object.keys(actionMap).forEach(function (action) {
+  _commander2.default.command(action).description(actionMap[action].description).alias(actionMap[action].alias) //别名
+  .action(function () {
+    if (handleArgv()) {
+      switch (action) {
+        case 'config':
+          //配置
+          _index2.default.apply(undefined, [action].concat((0, _toConsumableArray3.default)(process.argv.slice(3))));
+          break;
+        case 'init':
+          _index2.default.apply(undefined, [action].concat((0, _toConsumableArray3.default)(process.argv.slice(3))));
+          break;
+        case 'template':
+          _index2.default.apply(undefined, [action].concat((0, _toConsumableArray3.default)(process.argv.slice(3))));
+          break;
+        default:
+          break;
+      }
+    }
+  });
+});
+
+_commander2.default.name('wow').usage('<command> [options]');
 _commander2.default.on('-h', help);
 _commander2.default.on('--help', help);
-_commander2.default.version(_constants.VERSION, '-V --version').parse(process.argv);
+_commander2.default.version(_constants.VERSION, '-v --version').parse(process.argv);
 
-// wow 不带参数时
-if (!process.argv.slice(2).length) {
-  _commander2.default.outputHelp(make_green);
+/**
+ *  判断执行命令是的参数，最少3个参数，命令名和每个命令至少两个参数
+ * */
+function handleArgv() {
+  if (process.argv.slice(2).length <= 2) {
+    _commander2.default.outputHelp(make_green);
+    return false;
+  }
+  return true;
 }
+
 function make_green(txt) {
   return _chalk2.default.green(txt);
 }

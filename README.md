@@ -1,24 +1,42 @@
-### 安装依赖
+# wowo-cli
+Download and extract a git repository (GitHub, Bitbucket, GitLab) from node CLI.
 
-`npm install`
+> See [wowo](https://github.com/wujingacross/wowo-cli) for the API and issue tracker.
 
-### 启动
+## Install
 
-`npm run watch`
+Require [Node.js](https://nodejs.org/en/) and [Git](https://git-scm.com/).
 
-### 执行 `npm link`
+```bash
+$ npm install wowo-cli -g
+```
 
-此时就可以使用 `wow` 命令了。
 
-- `wow config get`
-- `wow config set type directRegistry`
-- `wow config set registry https://github.com/xxx/xxx.git`
-- `wow init m myVue`
+## Usage
 
-- `wow config set type users`
-- `wow config set registry YvetteLau`
-- `wow init vue-template myVue`
+```bash
+  Usage
+    $ wow init <template-name> <project-directory>
+    $ wow config get
+    $ wow config set <k> <v>
+    $ wow template <template-registry-url> <project-directory>
 
-### 发布
+  Example
+    $ wow -h
+    $ wow config get
+    $ wow config set type directRegistry
+    $ wow init https://github.com/wujingacross/mobile-tpl-rc.git mobile-fe
+    $ wow config set type users
+    $ wow config set registry wujingacross
+    $ wow init mobile-tpl-rc mobile-fe
+    $ wow template https://github.com/wujingacross/mobile-tpl-rc.git mobile-fe
 
-开发完成后，即可发布至 npm.
+  Options
+    -v --version        Output the version number
+    -h, --help          Display help for command
+```
+
+
+## License
+
+MIT
