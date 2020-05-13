@@ -25,6 +25,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *    - config
  *    - init
  *    - template
+ *    - choose
  */
 
 var actionMap = {
@@ -42,6 +43,11 @@ var actionMap = {
     alias: 'tpl',
     description: 'generate a new project from a direct template url',
     usages: ['wow template <template-registry-url> <project-directory>']
+  },
+  choose: {
+    alias: 'cos',
+    description: 'choose a new project from resources',
+    usages: ['wow choose <project-directory>']
   }
   //other commands
 };
@@ -62,6 +68,7 @@ function help() {
   console.log('  $ wow config set type directRegistry');
   console.log('  $ wow init https://github.com/wujingacross/mobile-tpl-rc.git mobile-fe');
   console.log('  $ wow template https://github.com/wujingacross/mobile-tpl-rc.git mobile-fe');
+  console.log('  $ wow config choose project-directory');
 }
 
 Object.keys(actionMap).forEach(function (action) {
@@ -77,6 +84,9 @@ Object.keys(actionMap).forEach(function (action) {
           _index2.default.apply(undefined, [action].concat((0, _toConsumableArray3.default)(process.argv.slice(3))));
           break;
         case 'template':
+          _index2.default.apply(undefined, [action].concat((0, _toConsumableArray3.default)(process.argv.slice(3))));
+          break;
+        case 'choose':
           _index2.default.apply(undefined, [action].concat((0, _toConsumableArray3.default)(process.argv.slice(3))));
           break;
         default:
@@ -95,7 +105,7 @@ _commander2.default.version(_constants.VERSION, '-v --version').parse(process.ar
  *  判断执行命令是的参数，最少3个参数，命令名和每个命令至少两个参数
  * */
 function handleArgv() {
-  if (process.argv.slice(2).length <= 2) {
+  if (process.argv.slice(2).length < 2) {
     _commander2.default.outputHelp(make_green);
     return false;
   }
