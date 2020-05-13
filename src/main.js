@@ -59,7 +59,7 @@ function help() {
   console.log(
     '  $ wow template https://github.com/wujingacross/mobile-tpl-rc.git mobile-fe'
   );
-  console.log('  $ wow config choose project-directory');
+  console.log('  $ wow choose project-directory');
 }
 
 Object.keys(actionMap).forEach((action) => {

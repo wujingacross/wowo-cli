@@ -28,9 +28,11 @@ var _logSymbols = require('log-symbols');
 
 var _logSymbols2 = _interopRequireDefault(_logSymbols);
 
-var _get = require('../utils/get');
+var _git = require('../utils/git');
 
 var _constants = require('../utils/constants');
+
+var _file = require('../utils/file');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -55,19 +57,10 @@ var template = function () {
                           loading = (0, _ora2.default)('downloading template ...');
 
                           loading.start();
-                          (0, _get.downloadByTemplateUrl)(templateUrl, projectName).then(function () {
+                          (0, _git.downloadByTemplateUrl)(templateUrl, projectName).then(function () {
                             loading.succeed();
-                            var fileName = projectName + '/package.json';
-                            if (_fs2.default.existsSync(fileName)) {
-                              var data = _fs2.default.readFileSync(fileName).toString();
-                              var json = JSON.parse(data);
-                              json.name = projectName;
-                              json.author = answer.author;
-                              json.description = answer.description;
-                              //修改项目文件夹中 package.json 文件
-                              _fs2.default.writeFileSync(fileName, JSON.stringify(json, null, '\t'), 'utf-8');
-                              console.log(_logSymbols2.default.success, _chalk2.default.green('Project initialization finished!'));
-                            }
+                            (0, _file.updateJsonFile)(projectName, answer);
+                            console.log(_logSymbols2.default.success, _chalk2.default.green('Project initialization finished!'));
                           }, function () {
                             loading.fail();
                           });

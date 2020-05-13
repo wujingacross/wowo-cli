@@ -30,6 +30,7 @@ $ npm install wowo-cli -g
     $ wow config set registry wujingacross
     $ wow init mobile-tpl-rc mobile-fe
     $ wow template https://github.com/wujingacross/mobile-tpl-rc.git mobile-fe
+    $ wow choose project-directory
 
   Options
     -v --version        Output the version number

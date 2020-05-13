@@ -8,9 +8,11 @@ var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-var _get = require('../utils/get');
+var _git = require('../utils/git');
 
 var _constants = require('../utils/constants');
+
+var _file = require('../utils/file');
 
 var _ora = require('ora');
 
@@ -59,9 +61,8 @@ var init = function () {
 
                   return name == type;
                 });
-                console.log('==curTpl==', curTpl.url);
                 _inquirer2.default.prompt(_constants.DEFAULTPROMPT).then(function () {
-                  var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(values) {
+                  var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(answer) {
                     var loading;
                     return _regenerator2.default.wrap(function _callee$(_context) {
                       while (1) {
@@ -72,19 +73,10 @@ var init = function () {
                             loading = (0, _ora2.default)('downloading template ...');
 
                             loading.start();
-                            (0, _get.downloadByTemplateUrl)(curTpl.url, projectName).then(function () {
+                            (0, _git.downloadByTemplateUrl)(curTpl.url, projectName).then(function () {
                               loading.succeed();
-                              var fileName = projectName + '/package.json';
-                              if (_fs2.default.existsSync(fileName)) {
-                                var data = _fs2.default.readFileSync(fileName).toString();
-                                var json = JSON.parse(data);
-                                json.name = projectName;
-                                json.author = values.author;
-                                json.description = values.description;
-                                //修改项目文件夹中 package.json 文件
-                                _fs2.default.writeFileSync(fileName, JSON.stringify(json, null, '\t'), 'utf-8');
-                                console.log(_logSymbols2.default.success, _chalk2.default.green('Project initialization finished!'));
-                              }
+                              (0, _file.updateJsonFile)(projectName, answer);
+                              console.log(_logSymbols2.default.success, _chalk2.default.green('Project initialization finished!'));
                             }, function () {
                               loading.fail();
                             });
