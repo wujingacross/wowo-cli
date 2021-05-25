@@ -1,6 +1,6 @@
 {
   "name": "wowo-cli",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "wow命令行工具，帮助开发人员快速创建react项目工程",
   "author": "wujing",
   "license": "MIT",
@@ -18,14 +18,17 @@
   },
   "keywords": [
     "cli",
-    "react",
+    "git",
     "template"
   ],
   "bugs": {
     "url": "https://github.com/wujingacross/wowo-cli/issues"
   },
   "homepage": "https://github.com/wujingacross/wowo-cli",
-  "dependencies": {
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-env": "^2.4.1",
     "babel-plugin-transform-runtime": "^6.23.0",
